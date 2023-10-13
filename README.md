@@ -7,7 +7,7 @@
 * Python 3.10.12
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui)
-* Torch 2.1.0
+* Torch 2.0.1
 * xformers 0.0.22
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
@@ -38,7 +38,7 @@ docker run -d \
   -p 5005:5006 \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
-  ashleykza/oobabooga:1.6.5
+  ashleykza/oobabooga:1.7.0
 ```
 
 You can obviously substitute the image name and tag with your own.
