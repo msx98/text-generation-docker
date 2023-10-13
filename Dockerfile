@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=35695e18c75206f1fe471a36d2d48b5db2f398b6
+ARG OOBABOOGA_COMMIT=ed66ca3cdf11e91401129be968473b5fc3ec6b84
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
