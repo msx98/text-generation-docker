@@ -38,7 +38,7 @@ docker run -d \
   -p 5005:5006 \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
-  ashleykza/oobabooga:1.6.3
+  ashleykza/oobabooga:latest
 ```
 
 You can obviously substitute the image name and tag with your own.

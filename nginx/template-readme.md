@@ -1,6 +1,6 @@
 ## Text Generation Web UI: A Gradio web UI for Large Language Models. Supports transformers, GPTQ, llama.cpp (GGUF), Llama models
 
-### Version 1.6.3
+### Version 1.8.0
 
 ### Included in this Template
 
@@ -21,8 +21,9 @@
 | Port | Description                    |
 |------|--------------------------------|
 | 3000 | Text Generation Web UI         |
-| 5000 | Text Generation REST API       |
-| 5005 | Text Generation Websockets API |
+| 5001 | Open AI Compatible API         |
+| 6000 | Text Generation REST API       |
+| 6005 | Text Generation Websockets API |
 | 8888 | Jupyter Lab                    |
 
 ### Environment Variables

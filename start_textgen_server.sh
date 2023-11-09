@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ARGS=("$@" --listen --api --listen-port 3001 --api-blocking-port 5001 --api-streaming-port 5006)
+ARGS=("$@" --listen --api --listen-port 3001 --api-blocking-port 6050 --api-streaming-port 6055 --extensions openai)
 
 if [[ -f /workspace/text-gen-model ]];
 then
