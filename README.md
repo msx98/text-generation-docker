@@ -7,8 +7,8 @@
 * Python 3.10.12
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui)
-* Torch 2.0.1
-* xformers 0.0.22
+* Torch 2.1.0
+* xformers 0.0.22.post7
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
