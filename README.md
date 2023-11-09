@@ -35,7 +35,8 @@ docker run -d \
   -v /workspace \
   -p 3000:3001 \
   -p 5000:5001 \
-  -p 5005:5006 \
+  -p 6000:6050 \
+  -p 6005:6055 \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   ashleykza/oobabooga:latest
