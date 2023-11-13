@@ -83,6 +83,7 @@ RUN source /venv/bin/activate && \
     cd repositories && \
     git clone https://github.com/turboderp/exllama && \
     pip3 install -r exllama/requirements.txt && \
+    pip3 install https://github.com/jllllll/AutoGPTQ/releases/download/v0.5.1/auto_gptq-0.5.1+cu121-cp310-cp310-linux_x86_64.whl && \
     deactivate
 
 # Install rclone
