@@ -112,6 +112,9 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/api.html nginx/502.html /usr/share/nginx/html/
 COPY nginx/template-readme.md /usr/share/nginx/html/README.md
 
+# Remove existing SSH host keys
+RUN rm -f /etc/ssh/ssh_host_*
+
 # Copy startup script for Oobabooba Web UI
 COPY --chmod=755 start_textgen_server.sh /text-generation-webui/
 
