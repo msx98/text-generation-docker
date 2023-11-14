@@ -9,9 +9,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=on \
     SHELL=/bin/bash
 
-# Create workspace working directory
-WORKDIR /workspace
-
 # Install Ubuntu packages
 RUN apt update && \
     apt -y upgrade && \
@@ -89,9 +86,8 @@ RUN source /venv/bin/activate && \
 # Install legacy API as an extension \
 WORKDIR /text-generation-webui
 RUN source /venv/bin/activate && \
-    cd /workspace/text-generation-webui && \
     git clone --depth=1 https://github.com/ashleykleynhans/oobabooga-legacy-api-extension.git extensions/api && \
-    source /workspace/venv/bin/activate && \
+    source /venv/bin/activate && \
     pip3 install -r extensions/api/requirements.txt && \
     deactivate
 
