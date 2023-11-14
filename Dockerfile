@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=2af7e382b121f2eae16dd1f7ace621d31028b319
+ARG OOBABOOGA_COMMIT=454fcf39a95691f5e375c48fbc6fe6aa96f0c738
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -84,6 +84,15 @@ RUN source /venv/bin/activate && \
     git clone https://github.com/turboderp/exllama && \
     pip3 install -r exllama/requirements.txt && \
     pip3 install https://github.com/jllllll/AutoGPTQ/releases/download/v0.5.1/auto_gptq-0.5.1+cu121-cp310-cp310-linux_x86_64.whl && \
+    deactivate
+
+# Install legacy API as an extension \
+WORKDIR /text-generation-webui
+RUN source /venv/bin/activate && \
+    cd /workspace/text-generation-webui && \
+    git clone --depth=1 https://github.com/ashleykleynhans/oobabooga-legacy-api-extension.git extensions/api && \
+    source /workspace/venv/bin/activate && \
+    pip3 install -r extensions/api/requirements.txt && \
     deactivate
 
 # Install rclone
