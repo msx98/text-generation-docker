@@ -122,15 +122,16 @@ COPY nginx/template-readme.md /usr/share/nginx/html/README.md
 RUN rm -f /etc/ssh/ssh_host_*
 
 # Copy startup script for Oobabooba Web UI
-COPY --chmod=755 start_textgen_server.sh /text-generation-webui/
+COPY --chmod=755 scripts/start_textgen_server.sh /text-generation-webui/
 
 # Copy scripts to download models
 COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
-# Set up the container startup script
 WORKDIR /
-COPY --chmod=755 pre_start.sh start.sh fix_venv.sh ./
+
+# Copy the scripts
+COPY --chmod=755 scripts/* ./
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
