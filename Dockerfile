@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=454fcf39a95691f5e375c48fbc6fe6aa96f0c738
+ARG OOBABOOGA_COMMIT=f889302d2427c03a3c15925dd097c6213845660c
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -80,7 +80,6 @@ RUN source /venv/bin/activate && \
     cd repositories && \
     git clone https://github.com/turboderp/exllama && \
     pip3 install -r exllama/requirements.txt && \
-    pip3 install https://github.com/jllllll/AutoGPTQ/releases/download/v0.5.1/auto_gptq-0.5.1+cu121-cp310-cp310-linux_x86_64.whl && \
     deactivate
 
 # Install legacy API as an extension \
