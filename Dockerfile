@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=51add248c8a7080c3220ce16012a9f11e71f69ac
+ARG OOBABOOGA_COMMIT=6d3a9b8689cd63d565e1b6039f7e214786e15810
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -134,4 +134,4 @@ COPY --chmod=755 scripts/* ./
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
-CMD [ "/start.sh" ]
+ENTRYPOINT [ "/start.sh" ]
