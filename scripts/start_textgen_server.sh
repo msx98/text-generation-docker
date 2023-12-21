@@ -9,5 +9,6 @@ fi
 
 source /workspace/venv/bin/activate
 cd /workspace/text-generation-webui
+export HF_HOME="/workspace"
 echo "Starting Oobabooba Text Generation UI: ${ARGS[@]}"
 python3 server.py "${ARGS[@]}"
