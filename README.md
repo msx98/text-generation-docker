@@ -1,5 +1,9 @@
 # Docker image for the Text Generation Web UI: A Gradio web UI for Large Language Models. Supports transformers, GPTQ, llama.cpp (GGUF), Llama models
 
+**NOTE:** If you want to use the LEGACY API with chat support,
+please set the image tag to 1.9.5. The legacy chat API no longer
+works from version 1.10.0 onwards.
+
 ## Installs
 
 * Ubuntu 22.04 LTS
