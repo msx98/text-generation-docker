@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=19d13743a6c436474f80643c26eb1fb35e5446f5
+ARG OOBABOOGA_COMMIT=3f28925a8d6f04860f09975536c37f6815b0f2b5
 ARG TORCH_VERSION=2.1.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
