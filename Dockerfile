@@ -83,14 +83,6 @@ RUN source /venv/bin/activate && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
-# Install legacy API as an extension \
-WORKDIR /text-generation-webui
-RUN source /venv/bin/activate && \
-    git clone --depth=1 https://github.com/ashleykleynhans/oobabooga-legacy-api-extension.git extensions/api && \
-    source /venv/bin/activate && \
-    pip3 install -r extensions/api/requirements.txt && \
-    deactivate
-
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
 

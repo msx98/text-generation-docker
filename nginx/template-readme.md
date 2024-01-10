@@ -22,8 +22,6 @@
 |------|--------------------------------|
 | 3000 | Text Generation Web UI         |
 | 5000 | Open AI Compatible API         |
-| 6000 | Text Generation REST API       |
-| 6005 | Text Generation Websockets API |
 | 8888 | Jupyter Lab                    |
 
 ### Environment Variables

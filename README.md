@@ -1,8 +1,12 @@
 # Docker image for the Text Generation Web UI: A Gradio web UI for Large Language Models. Supports transformers, GPTQ, llama.cpp (GGUF), Llama models
 
-**NOTE:** If you want to use the LEGACY API with chat support,
-please set the image tag to 1.9.5. The legacy chat API no longer
-works from version 1.10.0 onwards.
+> [!NOTE]
+> The legacy APIs no longer work with the latest version of the
+> Text Generation Web UI, and have been deprecated since
+> November 2023 and have now been completely removed.
+> If you want to use the LEGACY APIs, please set the image tag
+> to `1.9.5`.  You will also have to add port 6000 for the
+> legacy REST API and/or port 6005 for the legacy Websockets API.
 
 ## Installs
 
@@ -39,8 +43,6 @@ docker run -d \
   -v /workspace \
   -p 3000:3001 \
   -p 5000:5001 \
-  -p 6000:6050 \
-  -p 6005:6055 \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   ashleykza/oobabooga:latest
