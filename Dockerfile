@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=3f28925a8d6f04860f09975536c37f6815b0f2b5
+ARG OOBABOOGA_COMMIT=2dc8db8aa4a905b1f6d712c99c019e960ce21dd9
 ARG TORCH_VERSION=2.1.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -61,7 +61,7 @@ FROM base as setup
 # Install Torch
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install --no-cache-dir torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121 && \
     pip3 install --no-cache-dir xformers && \
     deactivate
 
