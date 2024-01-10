@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > The legacy APIs no longer work with the latest version of the
-> Text Generation Web UI, and have been deprecated since
+> Text Generation Web UI. They were deprecated in
 > November 2023 and have now been completely removed.
 > If you want to use the LEGACY APIs, please set the image tag
 > to `1.9.5`.  You will also have to add port 6000 for the
