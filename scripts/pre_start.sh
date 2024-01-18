@@ -13,11 +13,11 @@ fi
 sync_apps() {
     # Sync venv to workspace to support Network volumes
     echo "Syncing venv to workspace, please wait..."
-    rsync -au /venv/ /workspace/venv/
+    rsync ---remove-source-files -rlptDu /venv/ /workspace/venv/
 
     # Sync Oobabooga Text Generation Web UI to workspace to support Network volumes
     echo "Syncing Oobabooga Text Generation Web UI to workspace, please wait..."
-    rsync -au /text-generation-webui/ /workspace/text-generation-webui/
+    rsync --remove-source-files -rlptDu /text-generation-webui/ /workspace/text-generation-webui/
 
     echo "${TEMPLATE_VERSION}" > /workspace/template_version
 }
