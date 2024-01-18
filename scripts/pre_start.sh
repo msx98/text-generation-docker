@@ -38,7 +38,7 @@ if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -
     else
         echo "Existing version is the same as the template version, no syncing required."
     fi
-fimkdir -p /workspace/logs
+fi
 
 if [[ ${MODEL} ]];
 then
