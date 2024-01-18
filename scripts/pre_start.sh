@@ -1,21 +1,44 @@
 #!/usr/bin/env bash
+
 export PYTHONUNBUFFERED=1
 
-echo "Container is running"
+echo "Template version: ${TEMPLATE_VERSION}"
 
-# Sync venv to workspace to support Network volumes
-echo "Syncing venv to workspace, please wait..."
-rsync -au /venv/ /workspace/venv/
+if [[ -e "/workspace/template_version" ]]; then
+    EXISTING_VERSION=$(cat /workspace/template_version)
+else
+    EXISTING_VERSION="0.0.0"
+fi
 
-# Sync Oobabooga Text Generation Web UI to workspace to support Network volumes
-echo "Syncing Oobabooga Text Generation Web UI to workspace, please wait..."
-rsync -au /text-generation-webui/ /workspace/text-generation-webui/
+sync_apps() {
+    # Sync venv to workspace to support Network volumes
+    echo "Syncing venv to workspace, please wait..."
+    rsync -au /venv/ /workspace/venv/
 
-# Fix the venv to make it work from /workspace
-echo "Fixing venv..."
-/fix_venv.sh /venv /workspace/venv
+    # Sync Oobabooga Text Generation Web UI to workspace to support Network volumes
+    echo "Syncing Oobabooga Text Generation Web UI to workspace, please wait..."
+    rsync -au /text-generation-webui/ /workspace/text-generation-webui/
 
-mkdir -p /workspace/logs
+    echo "${TEMPLATE_VERSION}" > /workspace/template_version
+}
+
+fix_venvs() {
+    # Fix the venv to make it work from /workspace
+    echo "Fixing venv..."
+    /fix_venv.sh /venv /workspace/venv
+}
+
+if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
+    if [ "$EXISTING_VERSION" != "$TEMPLATE_VERSION" ]; then
+        sync_apps
+        fix_venvs
+
+        # Create directories
+        mkdir -p /workspace/logs /workspace/tmp
+    else
+        echo "Existing version is the same as the template version, no syncing required."
+    fi
+fimkdir -p /workspace/logs
 
 if [[ ${MODEL} ]];
 then

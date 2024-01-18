@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=2dc8db8aa4a905b1f6d712c99c019e960ce21dd9
+ARG OOBABOOGA_COMMIT=d8c3a5bee814f09b0868474002105dcf21a3ff1a
 ARG TORCH_VERSION=2.1.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -126,5 +126,6 @@ WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
+ENV TEMPLATE_VERSION=1.10.6
 SHELL ["/bin/bash", "--login", "-c"]
 ENTRYPOINT [ "/start.sh" ]
