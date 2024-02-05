@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=4f3fdf1b5ff6884b9899a3630b3ed9aae27decbf
+ARG OOBABOOGA_COMMIT=d8c3a5bee814f09b0868474002105dcf21a3ff1a
 ARG TORCH_VERSION=2.2.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -87,9 +87,9 @@ RUN source /venv/bin/activate && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
-# Fix broken safetensors
-RUN source /venv/bin/activate && \
-    pip3 install -U safetensors==0.4.1
+## Fix broken safetensors
+#RUN source /venv/bin/activate && \
+#    pip3 install -U safetensors==0.4.1
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
