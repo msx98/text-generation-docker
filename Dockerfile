@@ -87,6 +87,10 @@ RUN source /venv/bin/activate && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
+# Fix broken safetensors
+RUN source /venv/bin/activate && \
+    pip3 install -r safetensors==0.4.1 -U
+
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
 
