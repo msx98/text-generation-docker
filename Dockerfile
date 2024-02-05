@@ -134,6 +134,6 @@ WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
-ENV TEMPLATE_VERSION=1.11.1
+ENV TEMPLATE_VERSION=1.12.0
 SHELL ["/bin/bash", "--login", "-c"]
 CMD [ "/start.sh" ]
