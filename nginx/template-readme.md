@@ -10,8 +10,8 @@
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui)
 * Text Generation API
-* Torch 2.1.2
-* xformers 0.0.23.post1
+* Torch 2.2.0
+* xformers 0.0.24
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)

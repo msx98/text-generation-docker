@@ -2,7 +2,7 @@
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
 ARG OOBABOOGA_COMMIT=4f3fdf1b5ff6884b9899a3630b3ed9aae27decbf
-ARG TORCH_VERSION=2.1.2
+ARG TORCH_VERSION=2.2.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -65,7 +65,7 @@ FROM base as setup
 # Install Torch
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
-    pip3 install --no-cache-dir torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
     pip3 install --no-cache-dir xformers && \
     deactivate
 
@@ -89,7 +89,7 @@ RUN source /venv/bin/activate && \
 
 # Fix broken safetensors
 RUN source /venv/bin/activate && \
-    pip3 install safetensors==0.4.1 -U
+    pip3 install -U safetensors==0.4.1
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
