@@ -3,7 +3,7 @@ FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
 ARG OOBABOOGA_COMMIT=d8c3a5bee814f09b0868474002105dcf21a3ff1a
 ARG TORCH_VERSION=2.1.2
-ARG XFORMERS_VERSION=0.0.24
+ARG XFORMERS_VERSION=0.0.23.post1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
