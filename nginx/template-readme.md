@@ -1,6 +1,6 @@
 ## Text Generation Web UI: A Gradio web UI for Large Language Models. Supports transformers, GPTQ, llama.cpp (GGUF), Llama models
 
-### Version 1.11.0
+### Version 1.11.1
 
 ### Included in this Template
 
@@ -15,6 +15,9 @@
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
+* speedtest-cli
+* screen
+* tmux
 
 ### Ports
 

@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=837bd888e4cf239094d9b1cabcc342266fee11c0
+ARG OOBABOOGA_COMMIT=4f3fdf1b5ff6884b9899a3630b3ed9aae27decbf
 ARG TORCH_VERSION=2.1.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -41,10 +41,14 @@ RUN apt update && \
         zip \
         unzip \
         htop \
+        screen \
+        tmux \
         pkg-config \
         libcairo2-dev \
-        libgoogle-perftools4 libtcmalloc-minimal4 \
-        apt-transport-https ca-certificates && \
+        libgoogle-perftools4 \
+        libtcmalloc-minimal4 \
+        apt-transport-https \
+        ca-certificates && \
     update-ca-certificates && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -126,6 +130,6 @@ WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
-ENV TEMPLATE_VERSION=1.11.0
+ENV TEMPLATE_VERSION=1.11.1
 SHELL ["/bin/bash", "--login", "-c"]
-ENTRYPOINT [ "/start.sh" ]
+CMD [ "/start.sh" ]
