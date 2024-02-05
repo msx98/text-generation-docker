@@ -2,7 +2,8 @@
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
 ARG OOBABOOGA_COMMIT=d8c3a5bee814f09b0868474002105dcf21a3ff1a
-ARG TORCH_VERSION=2.2.0
+ARG TORCH_VERSION=2.1.2
+ARG XFORMERS_VERSION=0.0.24
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -66,7 +67,7 @@ FROM base as setup
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
-    pip3 install --no-cache-dir xformers && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} && \
     deactivate
 
 # Clone the git repo of Text Generation Web UI and set version
