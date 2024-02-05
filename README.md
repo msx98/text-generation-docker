@@ -20,6 +20,9 @@
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
+* speedtest-cli
+* screen
+* tmux
 
 ## Available on RunPod
 
