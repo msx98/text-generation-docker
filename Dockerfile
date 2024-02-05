@@ -66,8 +66,8 @@ FROM base as setup
 # Install Torch
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} && \
+    pip3 install torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install xformers==${XFORMERS_VERSION} && \
     deactivate
 
 # Clone the git repo of Text Generation Web UI and set version
@@ -88,9 +88,9 @@ RUN source /venv/bin/activate && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
-## Fix broken safetensors
-#RUN source /venv/bin/activate && \
-#    pip3 install -U safetensors==0.4.1
+# Fix broken safetensors
+RUN source /venv/bin/activate && \
+    pip3 install -U safetensors==0.4.1
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
