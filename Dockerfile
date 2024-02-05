@@ -4,7 +4,6 @@ FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 ARG OOBABOOGA_COMMIT=4f3fdf1b5ff6884b9899a3630b3ed9aae27decbf
 ARG TORCH_VERSION=2.1.2
 ARG XFORMERS_VERSION=0.0.23.post1
-ARG EXLLAMAV2_TAG=v0.0.12
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -86,7 +85,6 @@ RUN source /venv/bin/activate && \
     mkdir -p repositories && \
     cd repositories && \
     git clone https://github.com/turboderp/exllama && \
-    git checkout ${EXLLAMAV2_TAG} && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
