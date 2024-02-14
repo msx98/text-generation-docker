@@ -96,7 +96,7 @@ RUN source /venv/bin/activate && \
 RUN curl https://rclone.org/install.sh | bash
 
 # Install runpodctl
-RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
+RUN wget https://github.com/runpod/runpodctl/releases/download/v1.13.0/runpodctl-linux-amd64 -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
