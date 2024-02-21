@@ -107,12 +107,18 @@ RUN curl https://getcroc.schollz.com | bash
 RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash && \
     apt install speedtest
 
-# Install Jupyter
+# Install Jupyter, gdown and OhMyRunPod
 RUN pip3 install -U --no-cache-dir jupyterlab \
         jupyterlab_widgets \
         ipykernel \
         ipywidgets \
-        gdown
+        gdown \
+        OhMyRunPod
+
+# Install RunPod File Uploader
+RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/installer.sh -o installer.sh && \
+    chmod +x installer.sh && \
+    ./installer.sh
 
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
@@ -129,12 +135,13 @@ COPY --chmod=755 scripts/start_textgen_server.sh /text-generation-webui/
 COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
-WORKDIR /
+# Set template version
+ENV TEMPLATE_VERSION=1.12.4
 
 # Copy the scripts
+WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Start the container
-ENV TEMPLATE_VERSION=1.12.3
 SHELL ["/bin/bash", "--login", "-c"]
 CMD [ "/start.sh" ]

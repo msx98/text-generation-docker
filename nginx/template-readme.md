@@ -1,6 +1,6 @@
 ## Text Generation Web UI: A Gradio web UI for Large Language Models. Supports transformers, GPTQ, llama.cpp (GGUF), Llama models
 
-### Version 1.12.3
+### Version 1.12.4
 
 ### Included in this Template
 
@@ -12,7 +12,10 @@
 * Text Generation API
 * Torch 2.1.2
 * xformers 0.0.23.post1
+* Jupyter Lab
 * [runpodctl](https://github.com/runpod/runpodctl)
+* [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
+* [RunPod File Uploader](https://github.com/kodxana/RunPod-FilleUploader)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
 * speedtest-cli
@@ -21,11 +24,12 @@
 
 ### Ports
 
-| Port | Description                    |
-|------|--------------------------------|
-| 3000 | Text Generation Web UI         |
-| 5000 | Open AI Compatible API         |
-| 8888 | Jupyter Lab                    |
+| Port | Description                 |
+|------|-----------------------------|
+| 3000 | Text Generation Web UI      |
+| 5000 | Open AI Compatible API      |
+| 8888 | Jupyter Lab                 |
+| 2999 | RunPod File Uploader        |
 
 ### Environment Variables
 
