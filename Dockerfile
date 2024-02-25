@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=78380759904eb294e57fa2f287122c8e3866f236
+ARG OOBABOOGA_COMMIT=ba852716fdc9be64710544b270e017eb1e766373
 ARG TORCH_VERSION=2.1.2
 ARG XFORMERS_VERSION=0.0.23.post1
 
@@ -136,7 +136,7 @@ COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
 # Set template version
-ENV TEMPLATE_VERSION=1.12.4
+ENV TEMPLATE_VERSION=1.12.5
 
 # Copy the scripts
 WORKDIR /
