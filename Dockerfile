@@ -123,7 +123,6 @@ RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/i
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/api.html nginx/502.html /usr/share/nginx/html/
-COPY nginx/template-readme.md /usr/share/nginx/html/README.md
 
 # Remove existing SSH host keys
 RUN rm -f /etc/ssh/ssh_host_*
