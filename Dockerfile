@@ -135,7 +135,10 @@ COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
 # Set template version
-ENV TEMPLATE_VERSION=1.12.5
+ENV TEMPLATE_VERSION=1.12.6
+
+# Set the venv path
+ENV VENV_PATH="/workspace/venvs/text-generation-webui"
 
 # Copy the scripts
 WORKDIR /

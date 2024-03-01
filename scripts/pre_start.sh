@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 export PYTHONUNBUFFERED=1
+export APP="text-generation-webui"
+DOCKER_IMAGE_VERSION_FILE="/workspace/${APP}/docker_image_version"
 
 echo "Template version: ${TEMPLATE_VERSION}"
+echo "venv: ${VENV_PATH}"
 
-if [[ -e "/workspace/template_version" ]]; then
-    EXISTING_VERSION=$(cat /workspace/template_version)
+if [[ -e ${DOCKER_IMAGE_VERSION_FILE} ]]; then
+    EXISTING_VERSION=$(cat ${DOCKER_IMAGE_VERSION_FILE})
 else
     EXISTING_VERSION="0.0.0"
 fi
@@ -13,17 +16,19 @@ fi
 sync_apps() {
     # Sync venv to workspace to support Network volumes
     echo "Syncing venv to workspace, please wait..."
-    rsync --remove-source-files -rlptDu /venv/ /workspace/venv/
+    mkdir -p ${VENV_PATH}
+    rsync --remove-source-files -rlptDu /venv/ ${VENV_PATH}/
 
-    # Sync Oobabooga Text Generation Web UI to workspace to support Network volumes
-    echo "Syncing Oobabooga Text Generation Web UI to workspace, please wait..."
-    rsync --remove-source-files -rlptDu /text-generation-webui/ /workspace/text-generation-webui/
+    # Sync application to workspace to support Network volumes
+    echo "Syncing ${APP} to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /${APP}/ /workspace/${APP}/
 
-    echo "${TEMPLATE_VERSION}" > /workspace/template_version
+    echo "${TEMPLATE_VERSION}" > ${DOCKER_IMAGE_VERSION_FILE}
+    echo "${VENV_PATH}" > "/workspace/${APP}/venv_path"
 }
 
 fix_venvs() {
-    # Fix the venv to make it work from /workspace
+    # Fix the venv to make it work from VENV_PATH
     echo "Fixing venv..."
     /fix_venv.sh /venv /workspace/venv
 }
@@ -59,7 +64,6 @@ then
     echo "You can launch it manually:"
     echo ""
     echo "   cd /workspace/text-generation-webui"
-    echo "   deactivate && source /workspace/venv/bin/activate"
     echo "   ./start_textgen_server.sh"
 else
     ARGS=()
@@ -70,11 +74,11 @@ else
     fi
 
     echo "Starting Oobabooga Text Generation Web UI"
-    source /workspace/venv/bin/activate
-    cd /workspace/text-generation-webui && nohup ./start_textgen_server.sh "${ARGS[@]}" > /workspace/logs/textgen.log 2>&1 &
+    cd /workspace/text-generation-webui
+    nohup ./start_textgen_server.sh "${ARGS[@]}" > /workspace/logs/textgen.log 2>&1 &
+    deactivate
     echo "Oobabooga Text Generation Web UI started"
     echo "Log file: /workspace/logs/textgen.log"
-    deactivate
 fi
 
 echo "All services have been started"

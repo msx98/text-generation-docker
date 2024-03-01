@@ -7,7 +7,8 @@ then
   ARGS=("${ARGS[@]}" --model "$(</workspace/text-gen-model)")
 fi
 
-source /workspace/venv/bin/activate
+VENV_PATH=$(cat /workspace/text-generation-webui/venv_path)
+source ${VENV_PATH}/bin/activate
 cd /workspace/text-generation-webui
 export HF_HOME="/workspace"
 echo "Starting Oobabooba Text Generation UI: ${ARGS[@]}"
