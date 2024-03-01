@@ -51,13 +51,13 @@ docker run -d \
   -p 5000:5001 \
   -p 8888:8888 \
   -p 2999:2999 \
-  -e JUPYTER_PASSWORD=Jup1t3R! \
+  -e VENV_PATH="/workspace/venvs/text-generation-webui" \
   ashleykza/oobabooga:latest
 ```
 
 You can obviously substitute the image name and tag with your own.
 
-### Ports
+## Ports
 
 | Connect Port | Internal Port | Description            |
 |--------------|---------------|------------------------|
@@ -66,12 +66,12 @@ You can obviously substitute the image name and tag with your own.
 | 8888         | 8888          | Jupyter Lab            |
 | 2999         | 2999          | RunPod File Uploader   |
 
-### Environment Variables
+## Environment Variables
 
-| Variable           | Description                                 | Default   |
-|--------------------|---------------------------------------------|-----------|
-| JUPYTER_PASSWORD   | Password for Jupyter Lab                    | Jup1t3R!  |
-| DISABLE_AUTOLAUNCH | Disable Web UI from launching automatically | (not set) |
+| Variable           | Description                                  | Default                                |
+|--------------------|----------------------------------------------|----------------------------------------|
+| VENV_PATH          | Set the path for the Python venv for the app | /workspace/venvs/text-generation-webui |
+| DISABLE_AUTOLAUNCH | Disable Web UI from launching automatically  | (not set)                              |
 
 ## Logs
 
