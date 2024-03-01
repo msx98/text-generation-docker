@@ -76,7 +76,6 @@ else
     echo "Starting Oobabooga Text Generation Web UI"
     cd /workspace/text-generation-webui
     nohup ./start_textgen_server.sh "${ARGS[@]}" > /workspace/logs/textgen.log 2>&1 &
-    deactivate
     echo "Oobabooga Text Generation Web UI started"
     echo "Log file: /workspace/logs/textgen.log"
 fi
