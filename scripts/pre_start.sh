@@ -30,7 +30,7 @@ sync_apps() {
 fix_venvs() {
     # Fix the venv to make it work from VENV_PATH
     echo "Fixing venv..."
-    /fix_venv.sh /venv /workspace/venv
+    /fix_venv.sh /venv ${VENV_PATH}
 }
 
 if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
