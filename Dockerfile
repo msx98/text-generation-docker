@@ -1,8 +1,9 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=aa0da07af012e251b4b70a1391b0acd360f796bd
-ARG TORCH_VERSION=2.2.1
+ARG OOBABOOGA_COMMIT=60f3d87309bd5fa8e3d77ed1fc66b25ef84db8c5
+ARG TORCH_VERSION=2.1.2
+ARG XFORMERS_VERSION=0.0.23.post1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -66,6 +67,7 @@ FROM base as setup
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
     pip3 install torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install xformers==${XFORMERS_VERSION} && \
     deactivate
 
 # Clone the git repo of Text Generation Web UI and set version
@@ -94,8 +96,7 @@ RUN source /venv/bin/activate && \
 RUN curl https://rclone.org/install.sh | bash
 
 # Install runpodctl
-ARG RUNPODCTL_VERSION="v1.14.2"
-RUN wget "https://github.com/runpod/runpodctl/releases/download/${RUNPODCTL_VERSION}/runpodctl-linux-amd64" -O runpodctl && \
+RUN wget https://github.com/runpod/runpodctl/releases/download/v1.13.0/runpodctl-linux-amd64 -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
