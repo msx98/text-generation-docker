@@ -15,8 +15,8 @@
 * Python 3.10.12
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui)
-* Torch 2.1.2
-* xformers 0.0.23.post1
+* Torch 2.2.0
+* xformers 0.0.24
 * Jupyter Lab
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
@@ -78,8 +78,8 @@ You can obviously substitute the image name and tag with your own.
 Text Generation Web UI creates a log file, and you can tail the log instead of
 killing the service to view the logs.
 
-| Application           | Log file                    |
-|-----------------------|-----------------------------|
+| Application            | Log file                    |
+|------------------------|-----------------------------|
 | Text Generation Web UI | /workspace/logs/textgen.log |
 
 For example:

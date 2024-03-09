@@ -1,9 +1,9 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=60f3d87309bd5fa8e3d77ed1fc66b25ef84db8c5
-ARG TORCH_VERSION=2.1.2
-ARG XFORMERS_VERSION=0.0.23.post1
+ARG OOBABOOGA_COMMIT=aa0da07af012e251b4b70a1391b0acd360f796bd
+ARG TORCH_VERSION=2.2.0
+ARG XFORMERS_VERSION=0.0.24
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -89,8 +89,8 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Fix broken safetensors
-RUN source /venv/bin/activate && \
-    pip3 install -U safetensors==0.4.1
+#RUN source /venv/bin/activate && \
+#    pip3 install -U safetensors==0.4.1
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
@@ -135,7 +135,7 @@ COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
 # Set template version
-ENV TEMPLATE_VERSION=1.12.7
+ENV TEMPLATE_VERSION=1.13.0
 
 # Set the venv path
 ENV VENV_PATH="/workspace/venvs/text-generation-webui"
