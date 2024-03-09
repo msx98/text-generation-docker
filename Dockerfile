@@ -89,8 +89,8 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Fix broken safetensors
-#RUN source /venv/bin/activate && \
-#    pip3 install -U safetensors==0.4.1
+RUN source /venv/bin/activate && \
+    pip3 install -U safetensors==0.4.1
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
