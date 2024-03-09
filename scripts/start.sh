@@ -36,14 +36,16 @@ generate_ssh_host_keys() {
 }
 
 setup_ssh() {
+    echo "Setting up SSH..."
+    mkdir -p ~/.ssh
+
     # Add SSH public key from environment variable to ~/.ssh/authorized_keys
     # if the PUBLIC_KEY environment variable is set
     if [[ ${PUBLIC_KEY} ]]; then
-        echo "Setting up SSH..."
-        mkdir -p ~/.ssh
         echo -e "${PUBLIC_KEY}\n" >> ~/.ssh/authorized_keys
-        chmod 700 -R ~/.ssh
     fi
+
+    chmod 700 -R ~/.ssh
 
     # Generate SSH host keys if they don't exist
     generate_ssh_host_keys
