@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=aa0da07af012e251b4b70a1391b0acd360f796bd
+ARG OOBABOOGA_COMMIT=1934cb61ef879815644277c01c7295acbae542d8
 ARG TORCH_VERSION=2.2.0
 ARG XFORMERS_VERSION=0.0.24
 
@@ -138,7 +138,7 @@ COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
 # Set template version
-ENV TEMPLATE_VERSION=1.13.0
+ENV TEMPLATE_VERSION=1.13.1
 
 # Set the venv path
 ENV VENV_PATH="/workspace/venvs/text-generation-webui"
