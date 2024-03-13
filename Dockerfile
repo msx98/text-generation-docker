@@ -1,10 +1,6 @@
 # Stage 1: Base
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
 
-ARG OOBABOOGA_COMMIT=1934cb61ef879815644277c01c7295acbae542d8
-ARG TORCH_VERSION=2.2.0
-ARG XFORMERS_VERSION=0.0.24
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
@@ -64,14 +60,18 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python
 FROM base as setup
 
 # Install Torch
+ARG INDEX_URL
+ARG TORCH_VERSION
+ARG XFORMERS_VERSION
+WORKDIR /
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
-    pip3 install torch==${TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu121 && \
-    pip3 install xformers==${XFORMERS_VERSION} && \
+    pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL} && \
+    pip3 install xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
     deactivate
 
 # Clone the git repo of Text Generation Web UI and set version
-WORKDIR /
+ARG OOBABOOGA_COMMIT
 RUN git clone https://github.com/oobabooga/text-generation-webui && \
     cd /text-generation-webui && \
     git checkout ${OOBABOOGA_COMMIT}
@@ -98,7 +98,7 @@ RUN source /venv/bin/activate && \
 RUN curl https://rclone.org/install.sh | bash
 
 # Install runpodctl
-ARG RUNPODCTL_VERSION="v1.14.2"
+ARG RUNPODCTL_VERSION
 RUN wget "https://github.com/runpod/runpodctl/releases/download/${RUNPODCTL_VERSION}/runpodctl-linux-amd64" -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
@@ -138,10 +138,12 @@ COPY fetch_model.py /text-generation-webui/
 COPY download_model.py /text-generation-webui/
 
 # Set template version
-ENV TEMPLATE_VERSION=1.13.1
+ARG RELEASE
+ENV TEMPLATE_VERSION=${RELEASE}
 
 # Set the venv path
-ENV VENV_PATH="/workspace/venvs/text-generation-webui"
+ARG VENV_PATH
+ENV VENV_PATH=${VENV_PATH}
 
 # Copy the scripts
 WORKDIR /
