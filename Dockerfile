@@ -62,12 +62,10 @@ FROM base as setup
 # Install Torch
 ARG INDEX_URL
 ARG TORCH_VERSION
-ARG XFORMERS_VERSION
 WORKDIR /
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
     pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL} && \
-    pip3 install xformers==${XFORMERS_VERSION} && \
     deactivate
 
 # Clone the git repo of Text Generation Web UI and set version

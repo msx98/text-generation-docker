@@ -16,7 +16,6 @@
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui)
 * Torch 2.2.1
-* xformers 0.0.24
 * Jupyter Lab
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
