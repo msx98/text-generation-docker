@@ -7,7 +7,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "1.13.3"
+    default = "1.13.4"
 }
 
 variable "CU_VERSION" {
@@ -21,8 +21,8 @@ target "default" {
         RELEASE = "${RELEASE}"
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "2.2.1+cu${CU_VERSION}"
-        OOBABOOGA_COMMIT = "7cf1402bde48fd76af501d5efecb34227bf4d082"
+        OOBABOOGA_COMMIT = "1a7c027386f43b84f3ca3b0ff04ca48d861c2d7a"
         RUNPODCTL_VERSION = "v1.14.2"
-        VENV_PATH = "/workspace/venvs/text-generation-webuii"
+        VENV_PATH = "/workspace/venvs/text-generation-webui"
     }
 }
