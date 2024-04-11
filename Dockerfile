@@ -35,10 +35,9 @@ RUN source /venv/bin/activate && \
     pip3 install -r exllama/requirements.txt && \
     deactivate
 
-# Fix broken safetensors and autoawq
+# Fix safetensors module broken by above exllama repository installation
 RUN source /venv/bin/activate && \
-    pip3 install -U safetensors==0.4.1 && \
-    pip3 install -U autoawq && \
+    pip3 install -U safetensors>=0.4.1 && \
     deactivate
 
 # NGINX Proxy
