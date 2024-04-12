@@ -7,7 +7,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "1.16.0"
+    default = "1.17.0"
 }
 
 variable "CU_VERSION" {
@@ -22,7 +22,7 @@ target "default" {
         BASE_IMAGE = "ashleykza/runpod-base:1.0.0-cuda12.1.1-torch2.2.1"
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "2.2.1+cu${CU_VERSION}"
-        OOBABOOGA_COMMIT = "91a7370a655881c55274284509a546ffd644dc16"
+        OOBABOOGA_COMMIT = "26d822f64f2a029306b250b69dc58468662a4fc6"
         VENV_PATH = "/workspace/venvs/text-generation-webui"
     }
 }
