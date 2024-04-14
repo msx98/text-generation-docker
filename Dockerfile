@@ -26,6 +26,7 @@ RUN git clone https://github.com/oobabooga/text-generation-webui && \
 # Install the dependencies for Text Generation Web UI
 # Including all extensions
 WORKDIR /text-generation-webui
+COPY oobabooga/requirements* ./
 RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
