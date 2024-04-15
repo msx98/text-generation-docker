@@ -32,8 +32,8 @@ RUN source /venv/bin/activate && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
     mkdir -p repositories && \
     cd repositories && \
-    git clone https://github.com/turboderp/exllama && \
-    pip3 install -r exllama/requirements.txt && \
+    git clone https://github.com/turboderp/exllamav2 && \
+    pip3 install -r exllamav2/requirements.txt && \
     deactivate
 
 # Fix safetensors module broken by above exllama repository installation
