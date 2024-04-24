@@ -11,7 +11,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "1.18.0"
+    default = "1.19.0"
 }
 
 variable "CU_VERSION" {
@@ -42,7 +42,7 @@ target "default" {
         BASE_IMAGE = "${BASE_IMAGE_REPOSITORY}:${BASE_IMAGE_VERSION}-cuda${CUDA_VERSION}-torch${TORCH_VERSION}"
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "${TORCH_VERSION}+cu${CU_VERSION}"
-        OOBABOOGA_COMMIT = "26d822f64f2a029306b250b69dc58468662a4fc6"
+        OOBABOOGA_COMMIT = "ad122361ea1dbc4b419214891b83f6b9ac12f947"
         VENV_PATH = "/workspace/venvs/text-generation-webui"
     }
 }
