@@ -11,7 +11,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "1.19.1"
+    default = "1.20.0"
 }
 
 variable "CU_VERSION" {
@@ -23,7 +23,7 @@ variable "BASE_IMAGE_REPOSITORY" {
 }
 
 variable "BASE_IMAGE_VERSION" {
-    default = "1.0.2"
+    default = "1.2.0"
 }
 
 variable "CUDA_VERSION" {
