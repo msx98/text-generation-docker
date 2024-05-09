@@ -2,9 +2,9 @@
 set -e
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.cargo/env
 
 # Install torch
-source ~/.bashrc
 uv venv -p 3.10 /venv
 source /venv/bin/activate
 uv pip install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
