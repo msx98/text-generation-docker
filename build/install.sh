@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 set -e
-# Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.cargo/env
 
 # Install torch
-uv venv -p 3.10 /venv
+pip3 -m venv --system-site-packages /venv
 source /venv/bin/activate
-uv pip install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
+pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
 
 # Clone the git repo of Text Generation Web UI and set version
 git clone https://github.com/oobabooga/text-generation-webui
@@ -16,7 +13,7 @@ git checkout ${OOBABOOGA_COMMIT}
 
 # Install the dependencies for Text Generation Web UI
 # Including all extensions
-uv pip install -r requirements.txt
+pip3 install -r requirements.txt
 bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
 #    mkdir -p repositories
 #    cd repositories
@@ -26,4 +23,4 @@ bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; 
 #    pip3 install .
 
 # Fix safetensors module broken by above exllama repository installation
-uv pip install -U safetensors>=0.4.1
+pip3 install -U safetensors>=0.4.1
