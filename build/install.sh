@@ -4,6 +4,7 @@ set -e
 # Install torch
 python3 -m venv --system-site-packages /venv
 source /venv/bin/activate
+pip3 install --upgrade pip
 pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
 
 # Clone the git repo of Text Generation Web UI and set version
