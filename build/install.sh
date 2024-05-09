@@ -2,7 +2,7 @@
 set -e
 
 # Install torch
-pip3 -m venv --system-site-packages /venv
+python3 -m venv --system-site-packages /venv
 source /venv/bin/activate
 pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
 
