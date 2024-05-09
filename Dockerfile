@@ -8,40 +8,16 @@ ENV DEBIAN_FRONTEND=noninteractive \
     SHELL=/bin/bash \
     PATH="/usr/local/cuda/bin:${PATH}"
 
-# Install Torch
+# Install oobabooga
 ARG INDEX_URL
 ARG TORCH_VERSION
-WORKDIR /
-RUN python3 -m venv --system-site-packages /venv && \
-    source /venv/bin/activate && \
-    pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL} && \
-    deactivate
-
-# Clone the git repo of Text Generation Web UI and set version
 ARG OOBABOOGA_COMMIT
-RUN git clone https://github.com/oobabooga/text-generation-webui && \
-    cd /text-generation-webui && \
-    git checkout ${OOBABOOGA_COMMIT}
-
-# Install the dependencies for Text Generation Web UI
-# Including all extensions
-WORKDIR /text-generation-webui
+ENV INDEX_URL=${INDEX_URL}
+ENV TORCH_VERSION=${TORCH_VERSION}
+ENV OOBABOOGA_COMMIT=${OOBABOOGA_COMMIT}
 #COPY oobabooga/requirements* ./
-RUN source /venv/bin/activate && \
-    pip3 install -r requirements.txt && \
-    bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
-#    mkdir -p repositories && \
-#    cd repositories && \
-#    git clone https://github.com/turboderp/exllamav2 && \
-#    cd exllamav2 && \
-#    pip3 install -r requirements.txt && \
-#    pip3 install . && \
-    deactivate
-
-# Fix safetensors module broken by above exllama repository installation
-RUN source /venv/bin/activate && \
-    pip3 install -U safetensors>=0.4.1 && \
-    deactivate
+COPY --chmod=755 build/install.sh /install.sh
+RUN /install.sh && rm /install.sh
 
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
