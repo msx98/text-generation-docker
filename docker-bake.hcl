@@ -42,7 +42,7 @@ target "default" {
         BASE_IMAGE = "${BASE_IMAGE_REPOSITORY}:${BASE_IMAGE_VERSION}-cuda${CUDA_VERSION}-torch${TORCH_VERSION}"
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "${TORCH_VERSION}+cu${CU_VERSION}"
-        OOBABOOGA_COMMIT = "8f12fb028dff4e133460fe10ef49d3f90167b313"
+        OOBABOOGA_COMMIT = "9ac528715c54a65d9f5547a6c99c2ef1607204af"
         VENV_PATH = "/workspace/venvs/text-generation-webui"
     }
 }
