@@ -10,7 +10,7 @@ pip3 install torch==${TORCH_VERSION} --index-url ${INDEX_URL}
 # Clone the git repo of Text Generation Web UI and set version
 git clone https://github.com/oobabooga/text-generation-webui
 cd /text-generation-webui
-git checkout ${OOBABOOGA_COMMIT}
+git checkout ${OOBABOOGA_VERSION}
 
 # Install the dependencies for Text Generation Web UI
 # Including all extensions
