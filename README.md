@@ -23,7 +23,8 @@
 * [Text Generation Web UI](
   https://github.com/oobabooga/text-generation-webui) v1.8
 * Torch 2.2.1
-* Jupyter Lab
+* [Jupyter Lab](https://github.com/jupyterlab/jupyterlab)
+* [code-server](https://github.com/coder/code-server)
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
 * [RunPod File Uploader](https://github.com/kodxana/RunPod-FilleUploader)
