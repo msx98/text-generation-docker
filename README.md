@@ -78,6 +78,7 @@ docker run -d \
   -v /workspace \
   -p 3000:3001 \
   -p 5000:5001 \
+  -p 7777:7777 \
   -p 8888:8888 \
   -p 2999:2999 \
   -e VENV_PATH="/workspace/venvs/text-generation-webui" \
@@ -92,6 +93,7 @@ You can obviously substitute the image name and tag with your own.
 |--------------|---------------|------------------------|
 | 3000         | 3001          | Text Generation Web UI |
 | 5000         | 5001          | Open AI Compatible API |
+| 7777         | 7777          | Code Server            |
 | 8888         | 8888          | Jupyter Lab            |
 | 2999         | 2999          | RunPod File Uploader   |
 

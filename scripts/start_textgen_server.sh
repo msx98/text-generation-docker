@@ -10,6 +10,7 @@ fi
 VENV_PATH=$(cat /workspace/text-generation-webui/venv_path)
 source ${VENV_PATH}/bin/activate
 cd /workspace/text-generation-webui
+export PYTHONUNBUFFERED=1
 export HF_HOME="/workspace"
 echo "Starting Oobabooba Text Generation UI: ${ARGS[@]}"
 python3 server.py "${ARGS[@]}"
