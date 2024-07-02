@@ -22,11 +22,11 @@ sync_apps() {
     if [ -z "${DISABLE_SYNC}" ]; then
         # Sync venv to workspace to support Network volumes
         echo "Syncing venv to workspace, please wait..."
-        sync_with_progress --remove-source-files /venv/ /workspace/${VENV_PATH}/
+        rsync_with_progress --remove-source-files /venv/ /workspace/${VENV_PATH}/
 
         # Sync application to workspace to support Network volumes
         echo "Syncing ${APP} to workspace, please wait..."
-        sync_with_progress --remove-source-files /${APP}/ /workspace/${APP}/
+        rsync_with_progress --remove-source-files /${APP}/ /workspace/${APP}/
 
         echo "${TEMPLATE_VERSION}" > ${DOCKER_IMAGE_VERSION_FILE}
         echo "${VENV_PATH}" > "/workspace/${APP}/venv_path"
