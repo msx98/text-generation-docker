@@ -22,7 +22,7 @@ sync_apps() {
     if [ -z "${DISABLE_SYNC}" ]; then
         # Sync venv to workspace to support Network volumes
         echo "Syncing venv to workspace, please wait..."
-        rsync_with_progress --remove-source-files /venv/ /${VENV_PATH}/
+        rsync_with_progress --remove-source-files /venv/ ${VENV_PATH}/
 
         # Sync application to workspace to support Network volumes
         echo "Syncing ${APP} to workspace, please wait..."
