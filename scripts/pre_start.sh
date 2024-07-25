@@ -80,6 +80,11 @@ else
     	  ARGS=("${ARGS[@]}" ${UI_ARGS})
     fi
 
+    if [[ ${HF_TOKEN} ]];
+    then
+        export HF_TOKEN="${HF_TOKEN}"
+    fi
+
     echo "Starting Oobabooga Text Generation Web UI"
     cd /workspace/text-generation-webui
     nohup ./start_textgen_server.sh "${ARGS[@]}" > /workspace/logs/textgen.log 2>&1 &
