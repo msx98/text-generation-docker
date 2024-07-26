@@ -70,7 +70,7 @@ then
         #source /workspace/venv/bin/activate
         #/workspace/text-generation-webui/fetch_model.py "${MODEL}" /workspace/text-generation-webui/models >> /workspace/logs/download-model.log 2>&1
         #deactivate
-        huggingface-cli download "${MODEL}" "${download_path}"
+        huggingface-cli download "${MODEL}" --local_dir "${download_path}"
     fi
     export MODEL=$MODEL_NAME
 fi
