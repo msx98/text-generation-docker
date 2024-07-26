@@ -54,15 +54,25 @@ else
     echo "Existing version is newer than the template version, not syncing!"
 fi
 
+if [[ ${HF_TOKEN} ]];
+then
+    export HF_TOKEN="${HF_TOKEN}"
+fi
+
+export MODEL_NAME=""
 if [[ ${MODEL} ]];
 then
-    if [[ ! -e "/workspace/text-gen-model" ]];
+    export MODEL_NAME=$(echo $MODEL | sed 's/\//__/g')
+    download_path=/workspace/text-generation-webui/models/$MODEL_NAME
+    if [[ ! -e "${download_path}" ]];
     then
         echo "Downloading model (${MODEL}), this could take some time, please wait..."
-        source /workspace/venv/bin/activate
-        /workspace/text-generation-webui/fetch_model.py "${MODEL}" /workspace/text-generation-webui/models >> /workspace/logs/download-model.log 2>&1
-        deactivate
+        #source /workspace/venv/bin/activate
+        #/workspace/text-generation-webui/fetch_model.py "${MODEL}" /workspace/text-generation-webui/models >> /workspace/logs/download-model.log 2>&1
+        #deactivate
+        huggingface-cli download "${MODEL}" "${download_path}"
     fi
+    export MODEL=$MODEL_NAME
 fi
 
 if [[ ${DISABLE_AUTOLAUNCH} ]];
@@ -78,11 +88,6 @@ else
     if [[ ${UI_ARGS} ]];
     then
     	  ARGS=("${ARGS[@]}" ${UI_ARGS})
-    fi
-
-    if [[ ${HF_TOKEN} ]];
-    then
-        export HF_TOKEN="${HF_TOKEN}"
     fi
 
     echo "Starting Oobabooga Text Generation Web UI"

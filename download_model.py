@@ -12,6 +12,7 @@ from pathlib import Path
 import requests
 import tqdm
 from tqdm.contrib.concurrent import thread_map
+from huggingface_hub.hf_api import HfFolder; import os; HfFolder.save_token(os.environ['HF_TOKEN'])
 
 def sanitize_model_and_branch_names(model, branch):
     if model[-1] == '/':

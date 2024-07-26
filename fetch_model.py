@@ -5,6 +5,7 @@ import argparse
 import subprocess
 from urllib.parse import urlparse
 from huggingface_hub import model_info
+from huggingface_hub.hf_api import HfFolder; import os; HfFolder.save_token(os.environ['HF_TOKEN'])
 
 parser = argparse.ArgumentParser()
 parser.add_argument('model', type=str)
