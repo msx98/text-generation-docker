@@ -70,6 +70,7 @@ then
         huggingface-cli download "${MODEL}" --local-dir "${download_path}"
     fi
     export MODEL=$MODEL_NAME
+    UI_ARGS="${UI_ARGS} --model ${MODEL}"
 fi
 
 if [[ ${DISABLE_AUTOLAUNCH} ]];
