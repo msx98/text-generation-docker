@@ -59,18 +59,17 @@ then
     export HF_TOKEN="${HF_TOKEN}"
 fi
 
-export MODEL_NAME=""
 if [[ ${MODEL} ]];
 then
-    export MODEL_NAME=$(echo $MODEL | sed 's/\//__/g')
+    MODEL_NAME=$(echo $MODEL | sed 's/\//__/g')
     download_path=/workspace/text-generation-webui/models/$MODEL_NAME
     if [[ ! -e "${download_path}" ]];
     then
         echo "Downloading model (${MODEL}), this could take some time, please wait..."
         huggingface-cli download "${MODEL}" --local-dir "${download_path}"
     fi
+    UI_ARGS="${UI_ARGS} --model ${MODEL_NAME}"
     export MODEL=$MODEL_NAME
-    UI_ARGS="${UI_ARGS} --model ${MODEL}"
 fi
 
 if [[ ${DISABLE_AUTOLAUNCH} ]];
@@ -90,9 +89,12 @@ else
 
     echo "Starting Oobabooga Text Generation Web UI"
     cd /workspace/text-generation-webui
+    touch /workspace/logs/textgen.log
     nohup ./start_textgen_server.sh "${ARGS[@]}" > /workspace/logs/textgen.log 2>&1 &
     echo "Oobabooga Text Generation Web UI started"
     echo "Log file: /workspace/logs/textgen.log"
+    tail -f /workspace/logs/textgen &
+    echo "Started logging"
 fi
 
 echo "All services have been started"
